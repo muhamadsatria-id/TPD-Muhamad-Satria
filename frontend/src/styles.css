@@ -109,7 +109,7 @@ th {
 }
 tbody tr:hover { background: #fafcff; }
 tbody tr:last-child td { border-bottom: 0; }
-.nis {
+.kode {
   font-variant-numeric: tabular-nums;
   color: var(--text);
   font-weight: 500;

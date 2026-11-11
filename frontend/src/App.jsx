@@ -52,7 +52,7 @@ export default function App() {
 
   // Dipanggil TabelSiswa saat tombol Hapus ditekan.
   async function hapusData(siswa) {
-    if (!window.confirm(`Hapus data ${siswa.nama}? Tindakan ini tidak bisa dibatalkan.`)) return;
+    if (!window.confirm(`Hapus data ${siswa.nama_siswa}? Tindakan ini tidak bisa dibatalkan.`)) return;
     try {
       await apiSiswa.hapus(siswa.id);
       setNotifikasi('Siswa dihapus.');
@@ -66,7 +66,7 @@ export default function App() {
     <div className="halaman">
       <header className="kepala">
         <div>
-          <p className="tag">belajar node js &amp; react</p>
+          <p className="tag">Muhamad Satria - belajar node js &amp; react</p>
           <h1>Data Siswa</h1>
         </div>
         <div className="kepala-aksi">

@@ -20,11 +20,11 @@ export default function TabelSiswa({ daftar, saatUbah, saatHapus }) {
         <tbody>
           {daftar.map((siswa) => (
             <tr key={siswa.id}>
-              <td className="nis">{siswa.nis}</td>
-              <td>{siswa.nama}</td>
-              <td className="alamat">{siswa.alamat || '-'}</td>
-              <td>{rapikanTanggal(siswa.tanggal_lahir)}</td>
-              <td>{siswa.jurusan}</td>
+              <td className="kode">{siswa.kode_siswa}</td>
+              <td>{siswa.nama_siswa}</td>
+              <td className="alamat">{siswa.alamat_siswa || '-'}</td>
+              <td>{rapikanTanggal(siswa.tanggal_lahir_siswa)}</td>
+              <td>{siswa.jurusan_siswa}</td>
               <td className="aksi">
                 <button className="tombol kecil" onClick={() => saatUbah(siswa)}>Ubah</button>
                 <button className="tombol kecil bahaya" onClick={() => saatHapus(siswa)}>Hapus</button>

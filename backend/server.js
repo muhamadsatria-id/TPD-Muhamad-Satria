@@ -12,16 +12,16 @@ app.use(express.json());  // baca body request berbentuk JSON
 // Hasilnya { isi } kalau lengkap, atau { pesan } kalau ada yang salah.
 function periksa(body) {
   const isi = {
-    nis: String(body.nis ?? '').trim(),
-    nama: String(body.nama ?? '').trim(),
-    alamat: String(body.alamat ?? '').trim() || null,
-    tanggal_lahir: String(body.tanggal_lahir ?? '').trim() || null,
-    jurusan: String(body.jurusan ?? '').trim(),
+    kode_siswa: String(body.kode_siswa ?? '').trim(),
+    nama_siswa: String(body.nama_siswa ?? '').trim(),
+    alamat_siswa: String(body.alamat_siswa ?? '').trim() || null,
+    tanggal_lahir_siswa: String(body.tanggal_lahir_siswa ?? '').trim() || null,
+    jurusan_siswa: String(body.jurusan_siswa ?? '').trim(),
   };
 
-  if (!isi.nis) return { pesan: 'Kode siswa (NIS) wajib diisi.' };
-  if (!isi.nama) return { pesan: 'Nama siswa wajib diisi.' };
-  if (!isi.jurusan) return { pesan: 'Jurusan siswa wajib diisi.' };
+  if (!isi.kode_siswa) return { pesan: 'Kode siswa (NIS) wajib diisi.' };
+  if (!isi.nama_siswa) return { pesan: 'Nama siswa wajib diisi.' };
+  if (!isi.jurusan_siswa) return { pesan: 'Jurusan siswa wajib diisi.' };
   return { isi };
 }
 
@@ -49,11 +49,11 @@ app.get('/api/siswa', async (req, res) => {
     const nilai = [];
 
     if (cari) {
-      sql += ' WHERE nama LIKE ? OR nis LIKE ? OR jurusan LIKE ?';
+      sql += ' WHERE nama_siswa LIKE ? OR kode_siswa LIKE ? OR jurusan_siswa LIKE ?';
       nilai.push(`%${cari}%`, `%${cari}%`, `%${cari}%`);
     }
 
-    sql += ' ORDER BY nama';
+    sql += ' ORDER BY nama_siswa';
 
     const [daftar] = await basisdata.jalankan(sql, nilai);
     res.json(daftar);

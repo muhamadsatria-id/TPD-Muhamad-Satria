@@ -4,11 +4,11 @@ export default function FormSiswa({ siswa, onKirim, onTutup }) {
   const baru = !siswa.id; // true = tambah data baru, false = ubah data lama
   const [isi, setIsi] = useState({
     id: siswa.id,
-    nis: siswa.nis ?? '',
-    nama: siswa.nama ?? '',
-    alamat: siswa.alamat ?? '',
-    tanggal_lahir: siswa.tanggal_lahir ?? '',
-    jurusan: siswa.jurusan ?? '',
+    kode_siswa: siswa.kode_siswa ?? '',
+    nama_siswa: siswa.nama_siswa ?? '',
+    alamat_siswa: siswa.alamat_siswa ?? '',
+    tanggal_lahir_siswa: siswa.tanggal_lahir_siswa ?? '',
+    jurusan_siswa: siswa.jurusan_siswa ?? '',
   });
   const [pesan, setPesan] = useState('');
   const [sedangSimpan, setSedangSimpan] = useState(false);
@@ -42,23 +42,23 @@ export default function FormSiswa({ siswa, onKirim, onTutup }) {
         <div className="grid-form">
           <label>
             <span>Kode Siswa (NIS)</span>
-            <input name="nis" value={isi.nis} onChange={perbarui} required autoFocus />
+            <input name="kode_siswa" value={isi.kode_siswa} onChange={perbarui} required autoFocus />
           </label>
           <label>
             <span>Nama Siswa</span>
-            <input name="nama" value={isi.nama} onChange={perbarui} required />
+            <input name="nama_siswa" value={isi.nama_siswa} onChange={perbarui} required />
           </label>
           <label className="span-2">
             <span>Alamat Siswa</span>
-            <textarea name="alamat" rows="2" value={isi.alamat} onChange={perbarui} />
+            <textarea name="alamat_siswa" rows="2" value={isi.alamat_siswa} onChange={perbarui} />
           </label>
           <label>
             <span>Tanggal Lahir Siswa</span>
-            <input name="tanggal_lahir" type="date" value={isi.tanggal_lahir} onChange={perbarui} />
+            <input name="tanggal_lahir_siswa" type="date" value={isi.tanggal_lahir_siswa} onChange={perbarui} />
           </label>
           <label>
             <span>Jurusan Siswa</span>
-            <input name="jurusan" value={isi.jurusan} onChange={perbarui} placeholder="Contoh: IPA / RPL" required />
+            <input name="jurusan_siswa" value={isi.jurusan_siswa} onChange={perbarui} placeholder="Contoh: IPA / RPL" required />
           </label>
         </div>
 

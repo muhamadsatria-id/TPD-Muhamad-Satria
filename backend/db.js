@@ -1,7 +1,5 @@
 const mysql = require('mysql2/promise');
 
-// Pengaturan koneksi MySQL (default XAMPP/Laragon: user root, tanpa password).
-// Bisa juga lewat environment variable: DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME.
 const pengaturan = {
   host: process.env.DB_HOST || 'localhost',
   port: Number(process.env.DB_PORT) || 3306,
@@ -13,8 +11,8 @@ const NAMA_DATABASE = process.env.DB_NAME || 'db_siswa';
 
 let poolKoneksi; // diisi oleh siapkan() di bawah
 
-// Menyiapkan database + tabel (dibuat otomatis bila belum ada),
-// lalu membuka pool koneksi. Cukup dijalankan sekali saat server mulai.
+// Menyiapkan database + tabel dibuat otomatis.
+// lalu membuka pool koneksi, saat server mulai.
 async function siapkan() {
   // 1) Sambung ke MySQL, lalu buat database-nya kalau belum ada.
   const sementara = await mysql.createConnection(pengaturan);
@@ -23,7 +21,6 @@ async function siapkan() {
   );
   await sementara.end();
 
-  // 2) Buka pool koneksi (kumpulan koneksi siap pakai) ke database tersebut.
   poolKoneksi = mysql.createPool({
     ...pengaturan,
     database: NAMA_DATABASE,
@@ -31,16 +28,16 @@ async function siapkan() {
     connectionLimit: 10,
   });
 
-  // 3) Buat tabel "Data Siswa" kalau belum ada.
+  // 2) Buat tabel "Data Siswa" jika belum ada.
   await poolKoneksi.query(`
     CREATE TABLE IF NOT EXISTS \`Data Siswa\` (
-      id             INT AUTO_INCREMENT PRIMARY KEY,
-      nis            VARCHAR(30)  NOT NULL UNIQUE,
-      nama           VARCHAR(100) NOT NULL,
-      alamat         TEXT NULL,
-      tanggal_lahir  DATE NULL,
-      jurusan        VARCHAR(100) NOT NULL,
-      created_at     TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      id                   INT AUTO_INCREMENT PRIMARY KEY,
+      kode_siswa           VARCHAR(30)  NOT NULL UNIQUE,
+      nama_siswa           VARCHAR(100) NOT NULL,
+      alamat_siswa         TEXT NULL,
+      tanggal_lahir_siswa  DATE NULL,
+      jurusan_siswa        VARCHAR(100) NOT NULL,
+      created_at           TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     ) CHARACTER SET utf8mb4
   `);
 }
