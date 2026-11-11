@@ -1,0 +1,32 @@
+# ============================================================
+# .gitignore — CRUD Data Siswa
+# File/folder berikut tidak ikut ke commit/GitHub.
+# ============================================================
+
+# --- Dependensi (jalankan ulang: npm install) -------------------
+node_modules/
+
+# --- Dokumentasi lokal (sengaja tidak di-commit) ----------------
+dokumentasi.md
+index.php
+
+# --- File rahasia ------------------------------------------------
+.env
+.env.*
+
+# --- Hasil build -------------------------------------------------
+dist/
+build/
+
+# --- Database lokal ----------------------------------------------
+*.db
+*.db-shm
+*.db-wal
+
+# --- Log & file sementara ----------------------------------------
+*.log
+*.tmp
+*.bak
+*.zip
+.DS_Store
+Thumbs.db
